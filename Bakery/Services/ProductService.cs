@@ -1,6 +1,7 @@
 ﻿using Bakery.DataAccess;
 using Bakery.Models;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 
@@ -20,9 +21,14 @@ namespace Bakery.Services
         {
             //fake a slow running operation for id =2
 
+            int counter= 0;
             if (id==2)
             {
-                Thread.Sleep(5000);
+                for (int i = 0; i <= 5000;i++)
+                {
+                    counter ++;
+                    Debug.WriteLine(counter.ToString());
+                }
             }
 
             using (BakeryContext context = new BakeryContext()) 

@@ -2,6 +2,7 @@
 using Bakery.Models;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 
 namespace Bakery.Services
 {
@@ -17,6 +18,13 @@ namespace Bakery.Services
 
         public Product GetProduct(int id) 
         {
+            //fake a slow running operation for id =2
+
+            if (id==2)
+            {
+                Thread.Sleep(5000);
+            }
+
             using (BakeryContext context = new BakeryContext()) 
             {
                 return context.Products.Find(id);

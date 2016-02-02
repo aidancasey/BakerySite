@@ -1,5 +1,6 @@
 ﻿using Bakery.DataAccess;
 using Bakery.Models;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -20,14 +21,19 @@ namespace Bakery.Services
         public Product GetProduct(int id) 
         {
             //fake a slow running operation for id =2
-
-            int counter= 0;
             if (id==2)
             {
-                for (int i = 0; i <= 50000;i++)
+
+                DateTime now = DateTime.Now;
+
+                int k = 1;
+
+                while (DateTime.Now.Subtract(now) < TimeSpan.FromSeconds(5))
                 {
-                    counter ++;
-                    Debug.WriteLine(counter.ToString());
+                    for (int i = 0; i <= 50000; i++)
+                    {
+                        k += i;
+                    }
                 }
             }
 
